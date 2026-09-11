@@ -13,14 +13,14 @@ export default function StageStepper({
   const nextStage = activeIdx < stages.length - 1 ? stages[activeIdx + 1] : null;
 
   return (
-    <div className="w-full bg-slate-900/90 border border-slate-800/80 rounded-xl p-3 shadow-inner">
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 pb-2.5 border-b border-slate-800/60">
+    <div className="w-full bg-white dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800/80 rounded-xl p-3 shadow-sm">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 pb-2.5 border-b border-slate-100 dark:border-slate-800/60">
         <div className="flex items-center gap-2">
-          <div className="w-2 h-2 rounded-full bg-indigo-400 motion-safe:animate-pulse"></div>
-          <span className="text-[11px] font-semibold uppercase tracking-wider text-slate-400">
+          <div className="w-2 h-2 rounded-full bg-indigo-500 dark:bg-indigo-400 motion-safe:animate-pulse"></div>
+          <span className="text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
             Pipeline Progression
           </span>
-          <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-indigo-500/10 text-indigo-300 border border-indigo-500/20 font-medium">
+          <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-indigo-50 dark:bg-indigo-500/10 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-500/20 font-medium">
             Stage {activeIdx + 1} of {stages.length}: {stages[activeIdx]?.label}
           </span>
         </div>
@@ -57,20 +57,20 @@ export default function StageStepper({
                   type="button"
                   onClick={() => onStageChange(stage.id)}
                   aria-current={isCurrent ? 'step' : undefined}
-                  className="group flex flex-col items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 rounded-lg p-1 transition-all"
+                  className="group flex flex-col items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 rounded-lg p-1 transition-all cursor-pointer"
                   title={`Click to set stage to ${stage.label}`}
                 >
                   <div className="flex items-center">
                     {/* Step Indicator Circle */}
                     <div className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold transition-all ${
                       isCompleted 
-                        ? 'bg-emerald-500/20 border-2 border-emerald-400 text-emerald-300 group-hover:bg-emerald-500/30' 
+                        ? 'bg-emerald-100 dark:bg-emerald-500/20 border-2 border-emerald-500 dark:border-emerald-400 text-emerald-700 dark:text-emerald-300 group-hover:bg-emerald-200 dark:group-hover:bg-emerald-500/30' 
                         : isCurrent
                         ? 'bg-indigo-600 border-2 border-indigo-400 text-white shadow-lg shadow-indigo-500/40 ring-4 ring-indigo-500/20 scale-110'
-                        : 'bg-slate-950 border border-slate-700 text-slate-500 group-hover:border-slate-500 group-hover:text-slate-300'
+                        : 'bg-slate-100 dark:bg-slate-950 border border-slate-300 dark:border-slate-700 text-slate-400 dark:text-slate-500 group-hover:border-slate-400 dark:group-hover:border-slate-500 group-hover:text-slate-600 dark:group-hover:text-slate-300'
                     }`}>
                       {isCompleted ? (
-                        <Check className="w-3.5 h-3.5 text-emerald-400 stroke-[3]" />
+                        <Check className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400 stroke-[3]" />
                       ) : (
                         <span>{idx + 1}</span>
                       )}
@@ -80,10 +80,10 @@ export default function StageStepper({
                   {/* Step Label */}
                   <span className={`text-[10px] mt-1.5 whitespace-nowrap font-medium transition-colors ${
                     isCurrent 
-                      ? 'text-indigo-300 font-bold drop-shadow' 
+                      ? 'text-indigo-600 dark:text-indigo-300 font-bold drop-shadow' 
                       : isCompleted 
-                      ? 'text-emerald-400' 
-                      : 'text-slate-500 group-hover:text-slate-300'
+                      ? 'text-emerald-600 dark:text-emerald-400' 
+                      : 'text-slate-400 dark:text-slate-500 group-hover:text-slate-600 dark:group-hover:text-slate-300'
                   }`}>
                     {stage.label}
                   </span>
@@ -97,7 +97,7 @@ export default function StageStepper({
                         ? 'bg-emerald-500/60' 
                         : idx === activeIdx 
                         ? 'bg-indigo-500/40' 
-                        : 'bg-slate-800'
+                        : 'bg-slate-200 dark:bg-slate-800'
                     }`} />
                   </div>
                 )}

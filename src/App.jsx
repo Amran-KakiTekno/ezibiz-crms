@@ -44,12 +44,15 @@ export default function App() {
   const [conversations, setConversations] = useState(INITIAL_CONVERSATIONS);
 
   // Sync activeTab to URL query parameters
-  const setActiveTab = (newTab) => {
+  const handleTabChange = (newTab) => {
     setActiveTabState(newTab);
-    const url = new URL(window.location);
-    url.searchParams.set('tab', newTab);
-    window.history.replaceState({}, '', url);
+    if (typeof window !== 'undefined') {
+      const url = new URL(window.location);
+      url.searchParams.set('tab', newTab);
+      window.history.replaceState({}, '', url);
+    }
   };
+  const setActiveTab = handleTabChange;
 
   useEffect(() => {
     const onPopState = () => {
@@ -218,108 +221,114 @@ export default function App() {
   ];
 
   return (
-    <div className="min-h-screen bg-black text-zinc-100 flex flex-col md:flex-row font-sans transition-colors duration-200 selection:bg-indigo-500/20 selection:text-indigo-300">
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 flex flex-col md:flex-row font-sans transition-colors duration-200 selection:bg-indigo-500/20 selection:text-indigo-300">
       
       {/* DESKTOP SIDEBAR (Visible >= 768px) */}
-      <aside className="hidden md:flex md:w-64 md:flex-col md:fixed md:inset-y-0 z-30 bg-black/90 backdrop-blur-xl border-r border-white/[0.08] transition-colors">
-        <div className="flex flex-col h-full justify-between p-4">
-          <div className="space-y-6">
-            {/* Branding & Backlink */}
-            <div>
-              <a 
-                href="https://ezibiz-hub.pages.dev" 
-                className="inline-flex items-center gap-1.5 text-xs text-zinc-400 hover:text-zinc-100 transition-colors mb-3 px-2 py-1 rounded-lg hover:bg-zinc-900 border border-transparent hover:border-white/[0.08]"
-              >
-                <ArrowLeft className="w-3.5 h-3.5" />
-                <span>{t('backToHub')}</span>
-              </a>
+      <aside className="hidden md:flex md:w-64 md:flex-col md:fixed md:inset-y-0 z-30 bg-white/95 dark:bg-slate-950/95 backdrop-blur-xl border-r border-slate-200 dark:border-slate-800 p-4 justify-between select-none">
+        <div className="space-y-6">
+          {/* Top: Branding, Back to Hub & Workspace Indicator */}
+          <div>
+            <a 
+              href="https://ezibiz-hub.pages.dev" 
+              className="inline-flex items-center gap-1.5 text-xs text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 transition-colors mb-3 px-2 py-1 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-900 border border-transparent hover:border-slate-200 dark:hover:border-slate-800"
+            >
+              <ArrowLeft className="w-3.5 h-3.5" />
+              <span>{t('backToHub')}</span>
+            </a>
 
-              <div className="flex items-center gap-3 px-1">
-                <div className="w-10 h-10 rounded-xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 flex items-center justify-center font-bold shrink-0 shadow-rim">
-                  <MessageSquareText className="w-5 h-5" />
+            <div className="flex items-center gap-3 px-1">
+              <div className="w-10 h-10 rounded-xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-600 dark:text-indigo-400 flex items-center justify-center font-bold shrink-0 shadow-sm">
+                <MessageSquareText className="w-5 h-5" />
+              </div>
+              <div className="min-w-0">
+                <div className="flex items-center gap-1.5">
+                  <span className="font-bold text-base text-slate-900 dark:text-slate-100 tracking-tight">EziBiz CRMS</span>
                 </div>
-                <div className="min-w-0">
-                  <div className="flex items-center gap-1.5">
-                    <span className="font-bold text-base text-zinc-100 tracking-tight">EziBiz CRMS</span>
-                  </div>
-                  <p className="text-[11px] text-zinc-400 font-mono truncate">
-                    Relationship Intelligence
-                  </p>
+                <div className="flex items-center gap-1.5 mt-0.5">
+                  <span className="text-[10px] font-medium px-1.5 py-0.5 rounded-full bg-indigo-100 dark:bg-indigo-950/60 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800/60">
+                    Conversational CRM
+                  </span>
                 </div>
               </div>
             </div>
 
-            {/* Navigation Tabs */}
-            <nav className="space-y-1">
-              {tabsList.map(tab => {
-                const Icon = tab.icon;
-                const isActive = activeTab === tab.id;
-                return (
-                  <button
-                    key={tab.id}
-                    type="button"
-                    onClick={() => handleTabChange(tab.id)}
-                    className={`w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs font-medium transition-all cursor-pointer ${
-                      isActive
-                        ? 'bg-zinc-900 text-zinc-100 font-semibold border border-white/[0.08] shadow-rim'
-                        : 'text-zinc-400 hover:text-zinc-200 hover:bg-zinc-900/50'
-                    }`}
-                  >
-                    <div className="flex items-center gap-3 min-w-0">
-                      <Icon className={`w-4 h-4 shrink-0 ${isActive ? 'text-indigo-400' : 'text-zinc-400'}`} />
-                      <span className="truncate">{tab.label}</span>
-                    </div>
-                    {isActive && (
-                      <span className="w-1.5 h-1.5 rounded-full bg-indigo-400 shadow-sm shadow-indigo-400/50 shrink-0" />
-                    )}
-                  </button>
-                );
-              })}
-            </nav>
+            {/* Workspace Indicator */}
+            <div className="mt-3 mx-1 px-2.5 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 text-[11px] text-slate-600 dark:text-slate-400 flex items-center justify-between">
+              <span className="truncate font-mono">Retail & Services HQ</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0"></span>
+            </div>
           </div>
 
-          {/* Desktop Sidebar Footer */}
-          <div className="pt-4 border-t border-white/[0.08] space-y-2">
-            <button 
+          {/* Middle: 4 Vertical Tab Navigation Buttons */}
+          <nav className="space-y-1">
+            {tabsList.map(tab => {
+              const Icon = tab.icon;
+              const isActive = activeTab === tab.id;
+              return (
+                <button
+                  key={tab.id}
+                  type="button"
+                  onClick={() => handleTabChange(tab.id)}
+                  className={`w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs font-medium transition-all cursor-pointer ${
+                    isActive
+                      ? 'bg-indigo-50 dark:bg-indigo-950/40 text-indigo-700 dark:text-indigo-300 font-semibold border border-indigo-200 dark:border-indigo-800/60 shadow-sm'
+                      : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-900/60'
+                  }`}
+                >
+                  <div className="flex items-center gap-2.5 min-w-0">
+                    <Icon className={`w-4 h-4 shrink-0 ${isActive ? 'text-indigo-600 dark:text-indigo-400' : 'text-slate-400 dark:text-slate-500'}`} />
+                    <span className="truncate">{tab.label}</span>
+                  </div>
+                  {isActive && (
+                    <span className="w-1.5 h-1.5 rounded-full bg-indigo-600 dark:bg-indigo-400 shadow-sm shrink-0" />
+                  )}
+                </button>
+              );
+            })}
+          </nav>
+        </div>
+
+        {/* Bottom Footer: Preview Proposal, Settings Trigger + Suite Waffle Menu */}
+        <div className="pt-4 border-t border-slate-200 dark:border-slate-800 space-y-2">
+          <button 
+            type="button"
+            onClick={() => openClientProposalModal(currentChat)}
+            className="w-full flex items-center justify-center gap-1.5 text-xs font-semibold px-3 py-2 rounded-xl bg-slate-100 dark:bg-slate-900 border border-indigo-500/30 text-indigo-700 dark:text-indigo-400 hover:bg-indigo-50 dark:hover:bg-indigo-500/10 transition-all shadow-sm cursor-pointer"
+          >
+            <Eye className="w-3.5 h-3.5 shrink-0" />
+            <span>{t('previewProposal')}</span>
+          </button>
+
+          <div className="flex items-center justify-between px-1 pt-1">
+            <button
               type="button"
-              onClick={() => openClientProposalModal(currentChat)}
-              className="w-full flex items-center justify-center gap-1.5 text-xs font-semibold px-3 py-2 rounded-xl bg-zinc-900 border border-indigo-500/30 text-indigo-400 hover:bg-indigo-500/10 transition-all shadow-rim cursor-pointer"
+              onClick={() => setShowSettingsModal(true)}
+              className="flex items-center gap-2 px-2.5 py-1.5 rounded-xl text-xs font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-100 dark:hover:bg-slate-900 transition-colors cursor-pointer"
+              title={t('settings')}
             >
-              <Eye className="w-3.5 h-3.5 shrink-0" />
-              <span>{t('previewProposal')}</span>
+              <Settings className="w-4 h-4 text-slate-500 dark:text-slate-400" />
+              <span>{t('settings')}</span>
             </button>
 
-            <div className="flex items-center justify-between px-1 pt-1">
-              <button
-                type="button"
-                onClick={() => setShowSettingsModal(true)}
-                className="flex items-center gap-2 px-2.5 py-1.5 rounded-xl text-xs font-medium text-zinc-400 hover:text-zinc-100 hover:bg-zinc-900 transition-colors cursor-pointer"
-                title={t('settings')}
-              >
-                <Settings className="w-4 h-4 text-zinc-400" />
-                <span>{t('settings')}</span>
-              </button>
-
-              <SuiteWaffleMenu currentApp="crms" />
-            </div>
+            <SuiteWaffleMenu currentApp="crms" />
           </div>
         </div>
       </aside>
 
       {/* MOBILE TOP BAR (Visible < 768px) */}
-      <header className="md:hidden sticky top-0 z-40 bg-black/90 backdrop-blur border-b border-white/[0.08] px-4 h-14 flex items-center justify-between transition-colors">
+      <header className="md:hidden sticky top-0 z-40 bg-white/95 dark:bg-slate-950/95 backdrop-blur border-b border-slate-200 dark:border-slate-800 px-4 h-14 flex items-center justify-between transition-colors">
         <div className="flex items-center gap-2.5 min-w-0">
           <a 
             href="https://ezibiz-hub.pages.dev" 
-            className="p-1.5 rounded-lg text-zinc-400 hover:text-zinc-100"
+            className="p-1.5 rounded-lg text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100"
             title={t('backToHub')}
           >
             <ArrowLeft className="w-4 h-4" />
           </a>
-          <div className="w-7 h-7 rounded-lg bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 flex items-center justify-center shrink-0">
+          <div className="w-7 h-7 rounded-lg bg-indigo-500/10 border border-indigo-500/20 text-indigo-600 dark:text-indigo-400 flex items-center justify-center shrink-0">
             <MessageSquareText className="w-3.5 h-3.5" />
           </div>
-          <span className="font-bold text-sm text-zinc-100 tracking-tight truncate">
+          <span className="font-bold text-sm text-slate-900 dark:text-slate-100 tracking-tight truncate">
             EziBiz CRMS
           </span>
         </div>
@@ -328,7 +337,7 @@ export default function App() {
           <button 
             type="button"
             onClick={() => openClientProposalModal(currentChat)}
-            className="px-2.5 py-1 rounded-lg bg-indigo-950/40 text-indigo-400 border border-indigo-500/30 text-xs font-semibold"
+            className="px-2.5 py-1 rounded-lg bg-indigo-50 dark:bg-indigo-950/40 text-indigo-700 dark:text-indigo-400 border border-indigo-200 dark:border-indigo-500/30 text-xs font-semibold"
           >
             {t('proposalShort')}
           </button>
@@ -337,132 +346,99 @@ export default function App() {
       </header>
 
       {/* MAIN CONTAINER */}
-      <div className="md:pl-64 flex-1 flex flex-col min-w-0 pb-20 md:pb-8">
-        <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+      <div className="md:pl-64 flex-1 flex flex-col min-w-0 pb-24 md:pb-8 px-4 sm:px-6 lg:px-8 py-6">
+        <main className="flex-1 max-w-7xl w-full mx-auto space-y-6">
           
           {/* KPI Intelligence Strip */}
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-            <div className="p-4 rounded-xl bg-zinc-950/80 border border-white/[0.08] shadow-rim hover:border-white/[0.16] transition-all space-y-1">
+            <div className="p-4 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm hover:border-slate-300 dark:hover:border-slate-700 transition-all space-y-1">
               <div className="flex items-center justify-between">
-                <span className="text-[11px] font-mono uppercase tracking-wider text-zinc-400">Total Pipeline Value</span>
-                <DollarSign className="w-4 h-4 text-indigo-400" />
+                <span className="text-[11px] font-mono uppercase tracking-wider text-slate-500 dark:text-slate-400">{t('kpiPipelineValue')}</span>
+                <DollarSign className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
               </div>
-              <div className="text-xl font-bold font-mono tabular-nums text-white">{formatCurrency(totalPipelineValue)}</div>
-              <p className="text-[11px] text-indigo-400 font-mono">{conversations.length} active client accounts</p>
+              <div className="text-xl font-bold font-mono tabular-nums text-slate-900 dark:text-white">{formatCurrency(totalPipelineValue)}</div>
+              <p className="text-[11px] text-indigo-600 dark:text-indigo-400 font-mono">{t('kpiPipelineValueSub', { count: conversations.length })}</p>
             </div>
-            <div className="p-4 rounded-xl bg-zinc-950/80 border border-white/[0.08] shadow-rim hover:border-white/[0.16] transition-all space-y-1">
+            <div className="p-4 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm hover:border-slate-300 dark:hover:border-slate-700 transition-all space-y-1">
               <div className="flex items-center justify-between">
-                <span className="text-[11px] font-mono uppercase tracking-wider text-zinc-400">Secured via Escrow</span>
-                <ShieldCheck className="w-4 h-4 text-emerald-400" />
+                <span className="text-[11px] font-mono uppercase tracking-wider text-slate-500 dark:text-slate-400">{t('kpiSecuredEscrow')}</span>
+                <ShieldCheck className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
               </div>
-              <div className="text-xl font-bold font-mono tabular-nums text-emerald-400">{formatCurrency(totalSecuredValue)}</div>
-              <p className="text-[11px] text-zinc-400 font-mono">Non-refundable card pre-auth</p>
+              <div className="text-xl font-bold font-mono tabular-nums text-emerald-600 dark:text-emerald-400">{formatCurrency(totalSecuredValue)}</div>
+              <p className="text-[11px] text-slate-500 dark:text-slate-400 font-mono">{t('kpiSecuredEscrowSub')}</p>
             </div>
-            <div className="p-4 rounded-xl bg-zinc-950/80 border border-white/[0.08] shadow-rim hover:border-white/[0.16] transition-all space-y-1">
+            <div className="p-4 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm hover:border-slate-300 dark:hover:border-slate-700 transition-all space-y-1">
               <div className="flex items-center justify-between">
-                <span className="text-[11px] font-mono uppercase tracking-wider text-zinc-400">Drop-off Rate</span>
-                <Zap className="w-4 h-4 text-emerald-400" />
+                <span className="text-[11px] font-mono uppercase tracking-wider text-slate-500 dark:text-slate-400">{t('kpiDropoffRate')}</span>
+                <Zap className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
               </div>
-              <div className="text-xl font-bold font-mono tabular-nums text-emerald-400">2.1%</div>
-              <p className="text-[11px] text-zinc-400 font-mono">Capacity Protection Policy Active</p>
+              <div className="text-xl font-bold font-mono tabular-nums text-emerald-600 dark:text-emerald-400">2.1%</div>
+              <p className="text-[11px] text-slate-500 dark:text-slate-400 font-mono">{t('kpiDropoffRateSub')}</p>
             </div>
-            <div className="p-4 rounded-xl bg-zinc-950/80 border border-white/[0.08] shadow-rim hover:border-white/[0.16] transition-all space-y-1">
+            <div className="p-4 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm hover:border-slate-300 dark:hover:border-slate-700 transition-all space-y-1">
               <div className="flex items-center justify-between">
-                <span className="text-[11px] font-mono uppercase tracking-wider text-zinc-400">Avg. Lead-to-Quote</span>
-                <Clock className="w-4 h-4 text-indigo-400" />
+                <span className="text-[11px] font-mono uppercase tracking-wider text-slate-500 dark:text-slate-400">{t('kpiLeadToQuote')}</span>
+                <Clock className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
               </div>
-              <div className="text-xl font-bold font-mono tabular-nums text-indigo-300">42 Seconds</div>
-              <p className="text-[11px] text-zinc-400 font-mono">Instant CPQ automation</p>
+              <div className="text-xl font-bold font-mono tabular-nums text-indigo-600 dark:text-indigo-300">42 Seconds</div>
+              <p className="text-[11px] text-slate-500 dark:text-slate-400 font-mono">{t('kpiLeadToQuoteSub')}</p>
             </div>
           </div>
 
-          {/* Navigation Segmented Pills */}
-          <div className="overflow-x-auto no-scrollbar pb-1">
-            <div className="inline-flex gap-1.5 p-1 rounded-xl bg-zinc-950/80 border border-white/[0.08] shadow-rim min-w-max">
-              {[
-                { id: 'inbox', label: 'Omnichannel Inbox', icon: MessageSquareText },
-                { id: 'pipeline', label: 'Deal Pipeline Kanban', icon: Kanban },
-                { id: 'cpq', label: 'Dynamic CPQ Estimator', icon: Sliders },
-                { id: 'escrow', label: 'Deposit & Escrow Ledger', icon: ShieldCheck }
-              ].map(tab => {
-                const Icon = tab.icon;
-                const isActive = activeTab === tab.id;
-                return (
-                  <button
-                    key={tab.id}
-                    type="button"
-                    onClick={() => setActiveTab(tab.id)}
-                    className={`flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs font-medium transition-all cursor-pointer ${
-                      isActive 
-                        ? 'bg-zinc-900 text-zinc-100 border border-white/[0.08] shadow-rim font-semibold' 
-                        : 'text-zinc-400 hover:text-zinc-200 hover:bg-zinc-900/50'
-                    }`}
-                  >
-                    <Icon className={`w-3.5 h-3.5 ${isActive ? 'text-indigo-400' : 'text-zinc-400'}`} />
-                    <span>{tab.label}</span>
-                    {isActive && (
-                      <span className="w-1.5 h-1.5 rounded-full bg-indigo-400 shadow-sm shadow-indigo-400/50" />
-                    )}
-                  </button>
-                );
-              })}
-            </div>
+          <div className="hidden sm:flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400 pb-2">
+            <span className="w-2 h-2 rounded-full bg-emerald-500 motion-safe:animate-pulse"></span>
+            <span>{t('aiAutoTriage')}</span>
           </div>
 
-          <div className="hidden sm:flex items-center gap-2 text-xs text-slate-400 pb-2">
-            <span className="w-2 h-2 rounded-full bg-emerald-400 motion-safe:animate-pulse"></span>
-            <span>AI Auto-Triage Active (WhatsApp • Instagram • Threads)</span>
-          </div>
+          {/* ========================================================================= */}
+          {/* TAB VIEWS                                                                 */}
+          {/* ========================================================================= */}
+          {activeTab === 'inbox' && (
+            <InboxView
+              conversations={conversations}
+              selectedChatId={selectedChat}
+              onSelectChat={setSelectedChat}
+              onSendMessage={handleSendMessage}
+              onStageChange={(leadId, newStage) => moveLeadStage(leadId, newStage)}
+              onOpenProposal={openClientProposalModal}
+              onAddNote={handleAddNote}
+              showToast={showToast}
+            />
+          )}
 
-        {/* ========================================================================= */}
-        {/* TAB VIEWS                                                                 */}
-        {/* ========================================================================= */}
-        {activeTab === 'inbox' && (
-          <InboxView
-            conversations={conversations}
-            selectedChatId={selectedChat}
-            onSelectChat={setSelectedChat}
-            onSendMessage={handleSendMessage}
-            onStageChange={(leadId, newStage) => moveLeadStage(leadId, newStage)}
-            onOpenProposal={openClientProposalModal}
-            onAddNote={handleAddNote}
-            showToast={showToast}
-          />
-        )}
+          {activeTab === 'pipeline' && (
+            <KanbanPipeline
+              conversations={conversations}
+              pipelineStages={PIPELINE_STAGES}
+              onMoveLeadStage={moveLeadStage}
+              onOpenDM={(leadId) => {
+                setSelectedChat(leadId);
+                handleTabChange('inbox');
+              }}
+              showToast={showToast}
+            />
+          )}
 
-        {activeTab === 'pipeline' && (
-          <KanbanPipeline
-            conversations={conversations}
-            pipelineStages={PIPELINE_STAGES}
-            onMoveLeadStage={moveLeadStage}
-            onOpenDM={(leadId) => {
-              setSelectedChat(leadId);
-              setActiveTab('inbox');
-            }}
-            showToast={showToast}
-          />
-        )}
+          {activeTab === 'cpq' && (
+            <CpqBuilder
+              baseTier={baseTier}
+              setBaseTier={setBaseTier}
+              addOns={addOns}
+              setAddOns={setAddOns}
+              depositPct={depositPct}
+              setDepositPct={setDepositPct}
+              onOpenProposalModal={() => openClientProposalModal(currentChat)}
+              showToast={showToast}
+            />
+          )}
 
-        {activeTab === 'cpq' && (
-          <CpqBuilder
-            baseTier={baseTier}
-            setBaseTier={setBaseTier}
-            addOns={addOns}
-            setAddOns={setAddOns}
-            depositPct={depositPct}
-            setDepositPct={setDepositPct}
-            onOpenProposalModal={() => openClientProposalModal(currentChat)}
-            showToast={showToast}
-          />
-        )}
-
-        {activeTab === 'escrow' && (
-          <EscrowLedger
-            conversations={conversations}
-            onOpenProposal={openClientProposalModal}
-            showToast={showToast}
-          />
-        )}
+          {activeTab === 'escrow' && (
+            <EscrowLedger
+              conversations={conversations}
+              onOpenProposal={openClientProposalModal}
+              showToast={showToast}
+            />
+          )}
 
         </main>
       </div>
@@ -470,14 +446,9 @@ export default function App() {
       {/* MOBILE BOTTOM NAVIGATION BAR (Visible < 768px) */}
       <nav 
         aria-label="Mobile Bottom Navigation" 
-        className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 dark:bg-slate-950/95 backdrop-blur border-t border-slate-200 dark:border-slate-800 h-16 flex items-center justify-around px-2 shadow-lg transition-colors"
+        className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 dark:bg-slate-950/95 backdrop-blur border-t border-slate-200 dark:border-slate-800 h-16 pb-[env(safe-area-inset-bottom)] flex items-center justify-around px-2 shadow-lg transition-colors"
       >
-        {[
-          { id: 'inbox', label: t('tabInbox'), icon: MessageSquareText },
-          { id: 'pipeline', label: t('tabPipeline'), icon: Kanban },
-          { id: 'cpq', label: t('tabCpq'), icon: Sliders },
-          { id: 'escrow', label: t('tabEscrow'), icon: ShieldCheck }
-        ].map(tab => {
+        {tabsList.map(tab => {
           const Icon = tab.icon;
           const isActive = activeTab === tab.id;
           return (
@@ -485,7 +456,7 @@ export default function App() {
               key={tab.id}
               type="button"
               onClick={() => handleTabChange(tab.id)}
-              className={`flex flex-col items-center justify-center flex-1 h-full min-w-0 transition-colors ${
+              className={`flex flex-col items-center justify-center flex-1 h-full min-w-0 transition-colors cursor-pointer ${
                 isActive 
                   ? 'text-indigo-600 dark:text-indigo-400 font-semibold' 
                   : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'

@@ -10,10 +10,10 @@ export const translations = {
     settings: 'Settings',
 
     // Primary Tabs
-    tabInbox: 'Conversational Inbox',
-    tabPipeline: 'Sales Pipeline',
-    tabCpq: 'CPQ Configurator',
-    tabEscrow: 'Escrow Ledger',
+    tabInbox: 'Omnichannel Inbox',
+    tabPipeline: 'Deal Pipeline Kanban',
+    tabCpq: 'Dynamic CPQ Estimator',
+    tabEscrow: 'Deposit & Escrow Ledger',
 
     // Actions & Buttons
     previewProposal: 'Preview Client Smart Proposal',
@@ -25,6 +25,15 @@ export const translations = {
     zeroGhosting: 'Zero Ghosting Guaranteed',
 
     // Summary & Metrics
+    kpiPipelineValue: 'Total Pipeline Value',
+    kpiPipelineValueSub: '{count} active client accounts',
+    kpiSecuredEscrow: 'Secured via Escrow',
+    kpiSecuredEscrowSub: 'Non-refundable card pre-auth',
+    kpiDropoffRate: 'Drop-off Rate',
+    kpiDropoffRateSub: 'Capacity Protection Policy Active',
+    kpiLeadToQuote: 'Avg. Lead-to-Quote',
+    kpiLeadToQuoteSub: 'Instant CPQ automation',
+    aiAutoTriage: 'AI Auto-Triage Active (WhatsApp • Instagram • Threads)',
     inquiriesIngested: 'Inquiries Ingested',
     inquiriesSub: '38 Active conversations',
     quotesLocked: 'Quotes Auto-Generated',
@@ -71,10 +80,10 @@ export const translations = {
     settings: 'Tetapan',
 
     // Primary Tabs
-    tabInbox: 'Peti Masuk Perbualan',
-    tabPipeline: 'Saluran Jualan (Pipeline)',
-    tabCpq: 'Konfigurator CPQ',
-    tabEscrow: 'Lejar Escrow / Deposit',
+    tabInbox: 'Peti Masuk Omnichannel',
+    tabPipeline: 'Kanban Saluran Jualan',
+    tabCpq: 'Penganggar CPQ Dinamik',
+    tabEscrow: 'Lejar Deposit & Escrow',
 
     // Actions & Buttons
     previewProposal: 'Pratonton Cadangan Pintar Pelanggan',
@@ -86,6 +95,15 @@ export const translations = {
     zeroGhosting: 'Jaminan Sifar Ghosting',
 
     // Summary & Metrics
+    kpiPipelineValue: 'Jumlah Nilai Saluran',
+    kpiPipelineValueSub: '{count} akaun pelanggan aktif',
+    kpiSecuredEscrow: 'Terjamin melalui Escrow',
+    kpiSecuredEscrowSub: 'Pra-kebenaran kad tanpa bayaran balik',
+    kpiDropoffRate: 'Kadar Keciciran',
+    kpiDropoffRateSub: 'Polisi Perlindungan Kapasiti Aktif',
+    kpiLeadToQuote: 'Purata Lead-ke-Sebut Harga',
+    kpiLeadToQuoteSub: 'Automasi CPQ pantas',
+    aiAutoTriage: 'Triage Auto AI Aktif (WhatsApp • Instagram • Threads)',
     inquiriesIngested: 'Pertanyaan Diterima',
     inquiriesSub: '38 Perbualan aktif',
     quotesLocked: 'Sebut Harga Dijana',
