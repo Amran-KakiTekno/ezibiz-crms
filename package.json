@@ -1,6 +1,6 @@
 {
     "version":  "1.0.0",
-    "name":  "bizops-intake",
+    "name":  "ezibiz-quotes",
     "scripts":  {
                     "preview":  "vite preview",
                     "build":  "vite build",
