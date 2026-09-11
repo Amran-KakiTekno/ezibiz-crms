@@ -213,7 +213,7 @@ export default function App() {
       ltv: '$8,900',
       pastProjects: 4,
       notes: [
-        { id: 1, author: 'EziBiz AI', text: 'Deposit verified. Shift automatically created in ezibiz-shifts.', time: '2h ago' }
+        { id: 1, author: 'EziBiz AI', text: 'Deposit verified. Shift automatically created in ezibiz-hrms.', time: '2h ago' }
       ],
       timeline: [
         { id: 1, action: 'Interactive intake form submitted', time: '07:15 AM' },
@@ -353,7 +353,7 @@ export default function App() {
               </div>
               <div>
                 <div className="flex items-center gap-2">
-                  <span className="font-bold text-base text-white tracking-tight">EziBiz Quotes</span>
+                  <span className="font-bold text-base text-white tracking-tight">EziBiz CRMS</span>
                   <span className="text-[11px] font-mono px-2 py-0.5 rounded-full bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
                     Conversational CRM
                   </span>
@@ -378,7 +378,7 @@ export default function App() {
               <span>CPQ Builder</span>
             </button>
             <a 
-              href="https://github.com/Amran-KakiTekno/ezibiz-quotes" 
+              href="https://github.com/Amran-KakiTekno/ezibiz-crms" 
               target="_blank" 
               rel="noreferrer"
               className="p-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-900 transition-colors"
@@ -845,7 +845,7 @@ export default function App() {
                 <span className="text-slate-400 font-medium">Handoff to EziBiz Suite:</span>
                 <div className="grid grid-cols-2 gap-2">
                   <a
-                    href="https://ezibiz-shifts.pages.dev"
+                    href="https://ezibiz-hrms.pages.dev"
                     className="p-1.5 rounded bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 text-center flex items-center justify-center gap-1 transition-colors"
                   >
                     <Calendar className="w-3 h-3 text-cyan-400" />
