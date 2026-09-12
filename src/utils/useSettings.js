@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import { translations } from '../i18n/translations';
 
-const THEME_KEY = 'ezibiz_theme';
-const LANG_KEY = 'ezibiz_lang';
+const THEME_KEY = 'crms_theme';
+const LANG_KEY = 'crms_lang';
 
 export function useSettings() {
   const [theme, setThemeState] = useState(() => {

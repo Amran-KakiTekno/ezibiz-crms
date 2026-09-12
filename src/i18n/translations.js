@@ -6,7 +6,6 @@ export const translations = {
     appName: 'EziBiz Conversational CRMS',
     tagline: 'Conversational Intake & Smart CPQ',
     badgeCrm: 'Conversational CRM',
-    backToHub: 'Back to Hub',
     settings: 'Settings',
 
     // Primary Tabs
@@ -76,7 +75,6 @@ export const translations = {
     appName: 'EziBiz CRMS Berbual',
     tagline: 'Kemasukan Pelanggan Berbual & Sebut Harga CPQ',
     badgeCrm: 'CRM Berbual',
-    backToHub: 'Kembali ke Hub',
     settings: 'Tetapan',
 
     // Primary Tabs
