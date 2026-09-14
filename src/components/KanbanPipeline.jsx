@@ -41,7 +41,7 @@ export default function KanbanPipeline({
                 const el = document.getElementById(`kanban-col-${stage.id}`);
                 el?.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
               }}
-              className="px-3 py-1.5 rounded-full text-xs font-medium whitespace-nowrap bg-white dark:bg-slate-900 border border-slate-200 dark:border-white/[0.08] text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white flex items-center gap-1.5 flex-shrink-0 min-h-[36px] shadow-sm cursor-pointer"
+              className="px-3 py-1.5 rounded-full text-xs font-medium whitespace-nowrap bg-white dark:bg-slate-900 border border-slate-200 dark:border-white/[0.08] text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white flex items-center gap-1.5 flex-shrink-0 min-h-[44px] shadow-sm cursor-pointer"
             >
               <span>{stage.label}</span>
               <span className="w-4 h-4 rounded-full bg-slate-100 dark:bg-black text-slate-600 dark:text-slate-300 text-[10px] flex items-center justify-center font-bold font-mono">
@@ -116,7 +116,7 @@ export default function KanbanPipeline({
                       <div className="pt-2 border-t border-slate-200 dark:border-white/[0.06] flex items-center justify-between gap-1 text-[11px]">
                         <button
                           onClick={() => onOpenDM(lead.id)}
-                          className="text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 font-medium flex items-center gap-0.5 transition-colors min-h-[32px] px-2 py-1 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-800 cursor-pointer"
+                          className="text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 font-medium flex items-center gap-0.5 transition-colors min-h-[44px] px-2 py-1 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-800 cursor-pointer"
                         >
                           <span>DM</span>
                           <ChevronRight className="w-3 h-3" />
@@ -132,7 +132,7 @@ export default function KanbanPipeline({
                                   onMoveLeadStage(lead.id, prevStage.id);
                                 }
                               }}
-                              className="text-[10px] px-2.5 py-1 rounded-lg bg-white dark:bg-slate-900 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white border border-slate-200 dark:border-white/[0.08] transition-colors flex items-center gap-1 min-h-[32px] cursor-pointer shadow-sm"
+                              className="text-[10px] px-2.5 py-1 rounded-lg bg-white dark:bg-slate-900 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white border border-slate-200 dark:border-white/[0.08] transition-colors flex items-center gap-1 min-h-[44px] cursor-pointer shadow-sm"
                               title={`Revert back to ${pipelineStages[stageIdx - 1]?.label}`}
                             >
                               <span>&larr; Revert</span>
@@ -148,7 +148,7 @@ export default function KanbanPipeline({
                                   onMoveLeadStage(lead.id, nextStage.id);
                                 }
                               }}
-                              className="text-[10px] px-2.5 py-1 rounded-lg bg-indigo-50 dark:bg-slate-900 hover:bg-indigo-600 text-indigo-700 dark:text-slate-300 hover:text-white border border-indigo-200 dark:border-white/[0.08] hover:border-indigo-500 transition-colors flex items-center gap-1 min-h-[32px] cursor-pointer shadow-sm"
+                              className="text-[10px] px-2.5 py-1 rounded-lg bg-indigo-50 dark:bg-slate-900 hover:bg-indigo-600 text-indigo-700 dark:text-slate-300 hover:text-white border border-indigo-200 dark:border-white/[0.08] hover:border-indigo-500 transition-colors flex items-center gap-1 min-h-[44px] cursor-pointer shadow-sm"
                               title={`Advance to ${pipelineStages[stageIdx + 1]?.label}`}
                             >
                               <span>Advance &rarr;</span>

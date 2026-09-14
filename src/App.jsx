@@ -319,14 +319,14 @@ export default function App() {
           <button 
             type="button"
             onClick={() => openClientProposalModal(currentChat)}
-            className="px-2.5 py-1 rounded-lg bg-indigo-50 dark:bg-indigo-950/40 text-indigo-700 dark:text-indigo-400 border border-indigo-200 dark:border-indigo-500/30 text-xs font-semibold min-h-[36px]"
+            className="px-2.5 py-1 rounded-lg bg-indigo-50 dark:bg-indigo-950/40 text-indigo-700 dark:text-indigo-400 border border-indigo-200 dark:border-indigo-500/30 text-xs font-semibold min-h-[44px] flex items-center"
           >
             {t('proposalShort')}
           </button>
           <button
             type="button"
             onClick={() => setShowSettingsModal(true)}
-            className="p-2 rounded-xl text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-100 dark:hover:bg-slate-900 min-w-[36px] min-h-[36px] flex items-center justify-center transition-colors cursor-pointer"
+            className="p-2 rounded-xl text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-100 dark:hover:bg-slate-900 min-w-[44px] min-h-[44px] flex items-center justify-center transition-colors cursor-pointer"
             aria-label={t('settings')}
             title={t('settings')}
           >
@@ -482,7 +482,11 @@ export default function App() {
 
       {/* Floating Toast Notification */}
       {toastMessage && (
-        <div className="fixed bottom-20 md:bottom-6 right-6 z-50 px-4 py-3 rounded-xl bg-slate-900 border border-indigo-500/40 text-indigo-300 shadow-2xl text-xs flex items-center gap-2 animate-in fade-in slide-in-from-bottom-2">
+        <div 
+          role="status"
+          aria-live="polite"
+          className="fixed bottom-20 md:bottom-6 right-6 z-50 px-4 py-3 rounded-xl bg-slate-900 border border-indigo-500/40 text-indigo-300 shadow-2xl text-xs flex items-center gap-2 animate-in fade-in slide-in-from-bottom-2"
+        >
           <CheckCircle2 className="w-4 h-4 text-emerald-400" />
           <span>{toastMessage}</span>
         </div>

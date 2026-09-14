@@ -158,7 +158,7 @@ export default function CpqBuilder({
                 key={pct}
                 type="button"
                 onClick={() => setDepositPct(pct)}
-                className={`flex-1 py-1.5 rounded-lg text-xs font-semibold border transition-all cursor-pointer ${
+                className={`flex-1 py-1.5 rounded-lg text-xs font-semibold border transition-all cursor-pointer min-h-[44px] flex items-center justify-center ${
                   depositPct === pct 
                     ? 'bg-indigo-600 text-white border-indigo-500 shadow-sm' 
                     : 'bg-slate-100 dark:bg-black border-slate-200 dark:border-white/[0.08] text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
