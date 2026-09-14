@@ -1,6 +1,5 @@
 import React from 'react';
 import { 
-  CheckCircle2, 
   Clock, 
   Eye, 
   Copy, 
@@ -90,29 +89,27 @@ export default function CpqBuilder({
           </label>
           <div className="space-y-2 text-xs">
             {CPQ_ADDONS.map(item => (
-              <div 
+              <label 
                 key={item.key}
-                onClick={() => toggleAddon(item.key)}
                 className={`p-3 rounded-xl border flex items-center justify-between cursor-pointer transition-all ${
                   addOns[item.key] 
                     ? 'bg-indigo-50 dark:bg-zinc-900 border-indigo-300 dark:border-indigo-500/40 text-slate-900 dark:text-white shadow-sm' 
                     : 'bg-slate-50 dark:bg-black/40 border-slate-200 dark:border-white/[0.08] text-slate-600 dark:text-zinc-400 hover:border-slate-300 dark:hover:border-white/[0.14]'
                 }`}
               >
-                <div className="flex items-center gap-2.5">
-                  <div className={`w-4 h-4 rounded flex items-center justify-center border transition-colors ${
-                    addOns[item.key] 
-                      ? 'bg-indigo-600 border-indigo-500 text-white' 
-                      : 'border-slate-300 dark:border-white/[0.12] bg-white dark:bg-zinc-900'
-                  }`}>
-                    {addOns[item.key] && <CheckCircle2 className="w-3 h-3" />}
-                  </div>
+                <div className="flex items-center gap-3">
+                  <input
+                    type="checkbox"
+                    checked={Boolean(addOns[item.key])}
+                    onChange={() => toggleAddon(item.key)}
+                    className="h-5 w-5 rounded border-slate-300 text-indigo-600 focus:ring-indigo-500"
+                  />
                   <span className="font-medium">{item.label}</span>
                 </div>
                 <span className="font-mono tabular-nums text-indigo-600 dark:text-indigo-400 font-semibold">
                   +{formatCurrency(item.cost)}
                 </span>
-              </div>
+              </label>
             ))}
           </div>
         </div>

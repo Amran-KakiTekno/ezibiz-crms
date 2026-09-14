@@ -96,11 +96,21 @@ export default function InboxView({
             filteredConversations.map(conv => (
               <div
                 key={conv.id}
+                role="button"
+                tabIndex={0}
+                aria-pressed={selectedChatId === conv.id}
                 onClick={() => {
                   onSelectChat(conv.id);
                   setMobileSection('chat');
                 }}
-                className={`p-3.5 cursor-pointer transition-all ${
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    onSelectChat(conv.id);
+                    setMobileSection('chat');
+                  }
+                }}
+                className={`p-3.5 cursor-pointer transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 ${
                   selectedChatId === conv.id 
                     ? 'bg-indigo-50/70 dark:bg-slate-800/90 border-l-2 border-indigo-500 shadow-sm' 
                     : 'hover:bg-slate-50 dark:hover:bg-slate-800/40'
