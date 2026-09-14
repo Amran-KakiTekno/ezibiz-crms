@@ -136,7 +136,7 @@ export default function InboxView({
                     <p className="text-[11px] text-slate-500 dark:text-slate-400 truncate">{conv.handle} • {conv.channel}</p>
                   </div>
                 </div>
-                <span className="text-[10px] text-slate-400 dark:text-slate-500 font-mono whitespace-nowrap">{conv.time}</span>
+                <span className="text-[10px] text-slate-400 dark:text-slate-400 font-mono whitespace-nowrap">{conv.time}</span>
               </div>
               
               <p className="text-xs text-slate-600 dark:text-slate-300 mt-2 line-clamp-1">{conv.lastMessage}</p>
@@ -230,7 +230,7 @@ export default function InboxView({
               }`}>
                 {m.text}
               </div>
-              <span className="text-[10px] font-mono text-slate-400 dark:text-slate-500 mt-1 px-1">{m.time}</span>
+              <span className="text-[10px] font-mono text-slate-400 dark:text-slate-400 mt-1 px-1">{m.time}</span>
             </div>
           ))}
         </div>

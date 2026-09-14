@@ -67,7 +67,7 @@ export default function StageStepper({
                         ? 'bg-emerald-100 dark:bg-emerald-500/20 border-2 border-emerald-500 dark:border-emerald-400 text-emerald-700 dark:text-emerald-300 group-hover:bg-emerald-200 dark:group-hover:bg-emerald-500/30' 
                         : isCurrent
                         ? 'bg-indigo-600 border-2 border-indigo-400 text-white shadow-lg shadow-indigo-500/40 ring-4 ring-indigo-500/20 scale-110'
-                        : 'bg-slate-100 dark:bg-slate-950 border border-slate-300 dark:border-slate-700 text-slate-400 dark:text-slate-500 group-hover:border-slate-400 dark:group-hover:border-slate-500 group-hover:text-slate-600 dark:group-hover:text-slate-300'
+                        : 'bg-slate-100 dark:bg-slate-950 border border-slate-300 dark:border-slate-700 text-slate-400 dark:text-slate-400 group-hover:border-slate-400 dark:group-hover:border-slate-500 group-hover:text-slate-600 dark:group-hover:text-slate-300'
                     }`}>
                       {isCompleted ? (
                         <Check className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400 stroke-[3]" />
@@ -83,7 +83,7 @@ export default function StageStepper({
                       ? 'text-indigo-600 dark:text-indigo-300 font-bold drop-shadow' 
                       : isCompleted 
                       ? 'text-emerald-600 dark:text-emerald-400' 
-                      : 'text-slate-400 dark:text-slate-500 group-hover:text-slate-600 dark:group-hover:text-slate-300'
+                      : 'text-slate-400 dark:text-slate-400 group-hover:text-slate-600 dark:group-hover:text-slate-300'
                   }`}>
                     {stage.label}
                   </span>

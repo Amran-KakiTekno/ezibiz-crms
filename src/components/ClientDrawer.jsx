@@ -149,11 +149,11 @@ export default function ClientDrawer({
               </div>
               <div className="pt-2 border-t border-slate-200 dark:border-slate-800/80 text-[11px] space-y-1">
                 <p className="text-slate-500 dark:text-slate-400 flex items-center gap-1.5">
-                  <Phone className="w-3 h-3 text-slate-400 dark:text-slate-500" />
+                  <Phone className="w-3 h-3 text-slate-400 dark:text-slate-400" />
                   <span className="text-slate-700 dark:text-slate-300">{currentChat.phone}</span>
                 </p>
                 <p className="text-slate-500 dark:text-slate-400 flex items-center gap-1.5 truncate">
-                  <Mail className="w-3 h-3 text-slate-400 dark:text-slate-500" />
+                  <Mail className="w-3 h-3 text-slate-400 dark:text-slate-400" />
                   <span className="text-slate-700 dark:text-slate-300 truncate">{currentChat.email}</span>
                 </p>
               </div>
@@ -171,7 +171,7 @@ export default function ClientDrawer({
               <div className="space-y-1.5 max-h-32 overflow-y-auto">
                 {currentChat.notes?.map(note => (
                   <div key={note.id} className="p-2 rounded bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800/80 text-[11px] space-y-0.5">
-                    <div className="flex justify-between text-[10px] text-slate-400 dark:text-slate-500">
+                    <div className="flex justify-between text-[10px] text-slate-400 dark:text-slate-400">
                       <span className="font-medium text-indigo-600 dark:text-indigo-300">{note.author}</span>
                       <span>{note.time}</span>
                     </div>
@@ -202,7 +202,7 @@ export default function ClientDrawer({
             {/* Relationship Activity Audit Trail */}
             <div className="space-y-1.5 pt-2 border-t border-slate-200 dark:border-slate-800">
               <span className="text-[11px] font-semibold text-slate-500 dark:text-slate-400 flex items-center gap-1.5">
-                <History className="w-3 h-3 text-slate-400 dark:text-slate-500" />
+                <History className="w-3 h-3 text-slate-400 dark:text-slate-400" />
                 <span>Activity Audit Log</span>
               </span>
               <div className="space-y-1 max-h-28 overflow-y-auto">
@@ -210,7 +210,7 @@ export default function ClientDrawer({
                   <div key={i} className="text-[10px] flex items-start gap-1.5 text-slate-500 dark:text-slate-400">
                     <span className="text-indigo-600 dark:text-indigo-400 font-bold mt-0.5">•</span>
                     <span className="flex-1 leading-tight">{act.action}</span>
-                    <span className="text-slate-400 dark:text-slate-500 font-mono text-[9px]">{act.time}</span>
+                    <span className="text-slate-400 dark:text-slate-400 font-mono text-[9px]">{act.time}</span>
                   </div>
                 ))}
               </div>
