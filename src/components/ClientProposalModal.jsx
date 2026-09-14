@@ -77,7 +77,7 @@ export default function ClientProposalModal({
   const handlePayment = () => {
     setIsPaid(true);
     if (onSimulatePayment) {
-      onSimulatePayment(lead.id, modalTotal, modalDeposit);
+      onSimulatePayment({ leadId: lead.id, totalAmount: modalTotal, depositAmount: modalDeposit });
     }
   };
 

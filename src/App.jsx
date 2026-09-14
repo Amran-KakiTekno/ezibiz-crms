@@ -194,6 +194,7 @@ export default function App() {
       if (c.id === proposalLead.id) {
         return {
           ...c,
+          totalScope: paymentDetails?.totalAmount || c.totalScope,
           depositSecured: paymentDetails?.depositAmount || Math.round(c.totalScope * 0.3)
         };
       }

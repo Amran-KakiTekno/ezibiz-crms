@@ -118,9 +118,9 @@ export default function CpqBuilder({
         <div className="space-y-3 pt-2 border-t border-slate-200 dark:border-white/[0.08]">
           <div className="flex justify-between items-center text-xs">
             <div>
-              <span className="font-semibold text-slate-800 dark:text-zinc-200 block">
+              <label htmlFor="deposit-ratio" className="font-semibold text-slate-800 dark:text-zinc-200 block cursor-pointer">
                 3. Reservation Deposit Ratio
-              </span>
+              </label>
               <span className="text-[11px] text-slate-500 dark:text-zinc-500">
                 Non-refundable card pre-auth to lock production calendar
               </span>
@@ -136,6 +136,7 @@ export default function CpqBuilder({
           <div className="space-y-2">
             <input 
               type="range"
+              id="deposit-ratio"
               min="10"
               max="60"
               step="5"
