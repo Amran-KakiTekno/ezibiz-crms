@@ -194,6 +194,7 @@ export default function App() {
       if (c.id === proposalLead.id) {
         return {
           ...c,
+          totalScope: paymentDetails?.totalAmount || c.totalScope,
           depositSecured: paymentDetails?.depositAmount || Math.round(c.totalScope * 0.3)
         };
       }
@@ -236,7 +237,7 @@ export default function App() {
                 </div>
                 <div className="flex items-center gap-1.5 mt-0.5">
                   <span className="text-[10px] font-medium px-1.5 py-0.5 rounded-full bg-indigo-100 dark:bg-indigo-950/60 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800/60">
-                    Conversational CRM
+                    {t('badgeCrm')}
                   </span>
                 </div>
               </div>
@@ -266,7 +267,7 @@ export default function App() {
                   }`}
                 >
                   <div className="flex items-center gap-2.5 min-w-0">
-                    <Icon className={`w-4 h-4 shrink-0 ${isActive ? 'text-indigo-600 dark:text-indigo-400' : 'text-slate-400 dark:text-slate-500'}`} />
+                    <Icon className={`w-4 h-4 shrink-0 ${isActive ? 'text-indigo-600 dark:text-indigo-400' : 'text-slate-400 dark:text-slate-400'}`} />
                     <span className="truncate">{tab.label}</span>
                   </div>
                   {isActive && (
@@ -318,14 +319,14 @@ export default function App() {
           <button 
             type="button"
             onClick={() => openClientProposalModal(currentChat)}
-            className="px-2.5 py-1 rounded-lg bg-indigo-50 dark:bg-indigo-950/40 text-indigo-700 dark:text-indigo-400 border border-indigo-200 dark:border-indigo-500/30 text-xs font-semibold min-h-[36px]"
+            className="px-2.5 py-1 rounded-lg bg-indigo-50 dark:bg-indigo-950/40 text-indigo-700 dark:text-indigo-400 border border-indigo-200 dark:border-indigo-500/30 text-xs font-semibold min-h-[44px] flex items-center"
           >
             {t('proposalShort')}
           </button>
           <button
             type="button"
             onClick={() => setShowSettingsModal(true)}
-            className="p-2 rounded-xl text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-100 dark:hover:bg-slate-900 min-w-[36px] min-h-[36px] flex items-center justify-center transition-colors cursor-pointer"
+            className="p-2 rounded-xl text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-100 dark:hover:bg-slate-900 min-w-[44px] min-h-[44px] flex items-center justify-center transition-colors cursor-pointer"
             aria-label={t('settings')}
             title={t('settings')}
           >
@@ -335,8 +336,8 @@ export default function App() {
       </header>
 
       {/* MAIN CONTAINER */}
-      <div className="md:pl-64 flex-1 flex flex-col min-w-0 pb-24 md:pb-8 px-4 sm:px-6 lg:px-8 py-6">
-        <main className="flex-1 max-w-7xl w-full mx-auto space-y-6">
+      <div className="md:pl-64 flex-1 flex flex-col min-w-0 pb-24 md:pb-8 py-6">
+        <main className="flex-1 max-w-7xl w-full mx-auto space-y-6 px-4 sm:px-6 lg:px-8">
           
           {/* KPI Intelligence Strip */}
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
@@ -392,6 +393,7 @@ export default function App() {
               onOpenProposal={openClientProposalModal}
               onAddNote={handleAddNote}
               showToast={showToast}
+              t={t}
             />
           )}
 
@@ -405,6 +407,7 @@ export default function App() {
                 handleTabChange('inbox');
               }}
               showToast={showToast}
+              t={t}
             />
           )}
 
@@ -418,6 +421,7 @@ export default function App() {
               setDepositPct={setDepositPct}
               onOpenProposalModal={() => openClientProposalModal(currentChat)}
               showToast={showToast}
+              t={t}
             />
           )}
 
@@ -426,6 +430,7 @@ export default function App() {
               conversations={conversations}
               onOpenProposal={openClientProposalModal}
               showToast={showToast}
+              t={t}
             />
           )}
 
@@ -481,7 +486,11 @@ export default function App() {
 
       {/* Floating Toast Notification */}
       {toastMessage && (
-        <div className="fixed bottom-20 md:bottom-6 right-6 z-50 px-4 py-3 rounded-xl bg-slate-900 border border-indigo-500/40 text-indigo-300 shadow-2xl text-xs flex items-center gap-2 animate-in fade-in slide-in-from-bottom-2">
+        <div 
+          role="status"
+          aria-live="polite"
+          className="fixed bottom-20 md:bottom-6 right-6 z-50 px-4 py-3 rounded-xl bg-slate-900 border border-indigo-500/40 text-indigo-300 shadow-2xl text-xs flex items-center gap-2 animate-in fade-in slide-in-from-bottom-2"
+        >
           <CheckCircle2 className="w-4 h-4 text-emerald-400" />
           <span>{toastMessage}</span>
         </div>

@@ -77,7 +77,7 @@ export default function ClientProposalModal({
   const handlePayment = () => {
     setIsPaid(true);
     if (onSimulatePayment) {
-      onSimulatePayment(lead.id, modalTotal, modalDeposit);
+      onSimulatePayment({ leadId: lead.id, totalAmount: modalTotal, depositAmount: modalDeposit });
     }
   };
 
@@ -88,6 +88,7 @@ export default function ClientProposalModal({
         if (e.target === e.currentTarget) onClose();
       }}
     >
+      {/* intentionally always-dark: client-facing proposal */}
       <div 
         ref={modalRef}
         role="dialog"
