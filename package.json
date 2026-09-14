@@ -1,23 +1,24 @@
 {
-    "version":  "1.0.0",
-    "name":  "ezibiz-crms",
-    "scripts":  {
-                    "preview":  "vite preview",
-                    "build":  "vite build",
-                    "dev":  "vite"
-                },
-    "devDependencies":  {
-                            "postcss":  "^8.4.49",
-                            "tailwindcss":  "^3.4.16",
-                            "autoprefixer":  "^10.4.20",
-                            "vite":  "^6.0.1",
-                            "@vitejs/plugin-react":  "^4.3.4"
-                        },
-    "type":  "module",
-    "dependencies":  {
-                         "lucide-react":  "^0.468.0",
-                         "react":  "^18.3.1",
-                         "react-dom":  "^18.3.1"
-                     },
-    "private":  true
+    "version": "1.0.0",
+    "name": "ezibiz-crms",
+    "scripts": {
+        "preview": "vite preview",
+        "build": "vite build",
+        "dev": "vite"
+    },
+    "devDependencies": {
+        "@vitejs/plugin-react": "^4.3.4",
+        "autoprefixer": "^10.4.20",
+        "postcss": "^8.4.49",
+        "tailwindcss": "^3.4.16",
+        "tailwindcss-animate": "^1.0.7",
+        "vite": "^6.0.1"
+    },
+    "type": "module",
+    "dependencies": {
+        "lucide-react": "^0.468.0",
+        "react": "^18.3.1",
+        "react-dom": "^18.3.1"
+    },
+    "private": true
 }

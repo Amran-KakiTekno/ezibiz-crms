@@ -18,7 +18,8 @@ export default function ClientDrawer({
   currentChat,
   onOpenProposal,
   onAddNote,
-  showToast
+  showToast,
+  t = (k) => k
 }) {
   const [sidebarTab, setSidebarTab] = useState('ai_scope'); // 'ai_scope' | 'crm_profile'
   const [newNoteText, setNewNoteText] = useState('');
@@ -46,7 +47,7 @@ export default function ClientDrawer({
                 : 'border-transparent text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200'
             }`}
           >
-            AI Scope & CPQ
+            {t('drawerTabAiScope')}
           </button>
           <button
             onClick={() => setSidebarTab('crm_profile')}
@@ -56,7 +57,7 @@ export default function ClientDrawer({
                 : 'border-transparent text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200'
             }`}
           >
-            Client 360° & Notes
+            {t('drawerTabProfile')}
           </button>
         </div>
 
@@ -109,7 +110,7 @@ export default function ClientDrawer({
                 className="w-full py-2.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold flex items-center justify-center gap-1.5 shadow-md shadow-indigo-600/20 transition-all hover:scale-[1.01] active:scale-[0.99] cursor-pointer"
               >
                 <Eye className="w-3.5 h-3.5" />
-                <span>Interactive Proposal Preview</span>
+                <span>{t('proposalPreview')}</span>
               </button>
 
               <button
@@ -120,7 +121,7 @@ export default function ClientDrawer({
                 className="w-full py-2 rounded-lg bg-slate-100 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white text-xs font-medium flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
               >
                 <Copy className="w-3 h-3" />
-                <span>Copy Shareable Quote Link</span>
+                <span>{t('copyQuoteLink')}</span>
               </button>
             </div>
           </div>

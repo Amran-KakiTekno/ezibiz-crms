@@ -7,7 +7,8 @@ export default function KanbanPipeline({
   pipelineStages = PIPELINE_STAGES,
   onMoveLeadStage,
   onOpenDM,
-  showToast
+  showToast,
+  t = (k) => k
 }) {
   return (
     <div className="space-y-4">
@@ -83,7 +84,7 @@ export default function KanbanPipeline({
               <div className="p-2.5 space-y-2.5 flex-1 overflow-y-auto max-h-[500px]">
                 {stageLeads.length === 0 ? (
                   <div className="h-32 flex items-center justify-center text-center p-4 border border-dashed border-slate-200 dark:border-white/[0.06] rounded-xl">
-                    <p className="text-[11px] text-slate-400 dark:text-slate-400 font-mono">No deals in this stage</p>
+                    <p className="text-[11px] text-slate-400 dark:text-slate-400 font-mono">{t('noDealsInStage')}</p>
                   </div>
                 ) : (
                   stageLeads.map(lead => (
@@ -118,7 +119,7 @@ export default function KanbanPipeline({
                           onClick={() => onOpenDM(lead.id)}
                           className="text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 font-medium flex items-center gap-0.5 transition-colors min-h-[44px] px-2 py-1 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-800 cursor-pointer"
                         >
-                          <span>DM</span>
+                          <span>{t('btnDm')}</span>
                           <ChevronRight className="w-3 h-3" />
                         </button>
 
@@ -135,7 +136,7 @@ export default function KanbanPipeline({
                               className="text-[10px] px-2.5 py-1 rounded-lg bg-white dark:bg-slate-900 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white border border-slate-200 dark:border-white/[0.08] transition-colors flex items-center gap-1 min-h-[44px] cursor-pointer shadow-sm"
                               title={`Revert back to ${pipelineStages[stageIdx - 1]?.label}`}
                             >
-                              <span>&larr; Revert</span>
+                              <span>&larr; {t('btnRevert')}</span>
                             </button>
                           )}
 
@@ -151,7 +152,7 @@ export default function KanbanPipeline({
                               className="text-[10px] px-2.5 py-1 rounded-lg bg-indigo-50 dark:bg-slate-900 hover:bg-indigo-600 text-indigo-700 dark:text-slate-300 hover:text-white border border-indigo-200 dark:border-white/[0.08] hover:border-indigo-500 transition-colors flex items-center gap-1 min-h-[44px] cursor-pointer shadow-sm"
                               title={`Advance to ${pipelineStages[stageIdx + 1]?.label}`}
                             >
-                              <span>Advance &rarr;</span>
+                              <span>{t('btnAdvance')} &rarr;</span>
                             </button>
                           )}
                         </div>

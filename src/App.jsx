@@ -237,7 +237,7 @@ export default function App() {
                 </div>
                 <div className="flex items-center gap-1.5 mt-0.5">
                   <span className="text-[10px] font-medium px-1.5 py-0.5 rounded-full bg-indigo-100 dark:bg-indigo-950/60 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800/60">
-                    Conversational CRM
+                    {t('badgeCrm')}
                   </span>
                 </div>
               </div>
@@ -393,6 +393,7 @@ export default function App() {
               onOpenProposal={openClientProposalModal}
               onAddNote={handleAddNote}
               showToast={showToast}
+              t={t}
             />
           )}
 
@@ -406,6 +407,7 @@ export default function App() {
                 handleTabChange('inbox');
               }}
               showToast={showToast}
+              t={t}
             />
           )}
 
@@ -419,6 +421,7 @@ export default function App() {
               setDepositPct={setDepositPct}
               onOpenProposalModal={() => openClientProposalModal(currentChat)}
               showToast={showToast}
+              t={t}
             />
           )}
 
@@ -427,6 +430,7 @@ export default function App() {
               conversations={conversations}
               onOpenProposal={openClientProposalModal}
               showToast={showToast}
+              t={t}
             />
           )}
 
